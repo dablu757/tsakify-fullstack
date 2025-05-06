@@ -79,8 +79,8 @@ def user_login():
         access_exp = timedelta(minutes=int(os.getenv("ACCESS_TOKEN_EXPIRES_MINUTES", 15)))
         refresh_exp = timedelta(days=int(os.getenv("REFRESH_TOKEN_EXPIRES_DAYS", 30)))
 
-        access_token = create_access_token(identity=user.id, expires_delta=access_exp)
-        refresh_token = create_refresh_token(identity=user.id, expires_delta=refresh_exp)
+        access_token = create_access_token(identity=str(user.id), expires_delta=access_exp)
+        refresh_token = create_refresh_token(identity=str(user.id), expires_delta=refresh_exp)
 
         return success_response(
             message="login successfull",
